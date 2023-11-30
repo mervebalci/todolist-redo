@@ -24,17 +24,24 @@ export default function App() {
       <h1>TODO LIST</h1>
       <input id="userInput" placeholder="Add a new to do..."></input>
       <button onClick={addTask}>Add</button>
-      <TodoList tasks={taskList} />
+      <TodoList tasks={taskList} setTaskList={setTaskList} />
     </div>
   );
 }
 
-function TodoList({ tasks }) {
+function TodoList({ tasks, setTaskList }) {
+  function removeTask(id) {
+    let remainingTasks = tasks.filter((task) => {
+      return task.id !== id
+      });
+    setTaskList(remainingTasks)
+    console.log(tasks)
+  }
   return (
     <ul>
       {tasks.map((task) =>
         <li key={task.id}>
-          <button></button>
+          <button onClick={() => removeTask(task.id)}></button>
           <span>{task.name}</span>
         </li>
       )}
