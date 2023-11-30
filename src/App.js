@@ -10,7 +10,7 @@ export default function App() {
     const userInput = document.getElementById("userInput").value;
 
     const task = {id: counter, name: userInput};
-    
+
     setTaskList([...taskList, task]);
     console.log(taskList)
 
@@ -24,6 +24,20 @@ export default function App() {
       <h1>TODO LIST</h1>
       <input id="userInput" placeholder="Add a new to do..."></input>
       <button onClick={addTask}>Add</button>
+      <TodoList tasks={taskList} />
     </div>
   );
+}
+
+function TodoList({ tasks }) {
+  return (
+    <ul>
+      {tasks.map((task) =>
+        <li key={task.id}>
+          <button></button>
+          <span>{task.name}</span>
+        </li>
+      )}
+    </ul>
+  )
 }
