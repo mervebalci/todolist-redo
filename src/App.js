@@ -12,7 +12,6 @@ export default function App() {
     const task = {id: counter, name: userInput};
 
     setTaskList([...taskList, task]);
-    console.log(taskList)
 
     counter = counter + 1;
 
@@ -23,7 +22,7 @@ export default function App() {
     <div className="App">
       <h1>TODO LIST</h1>
       <input id="userInput" placeholder="Add a new to do..."></input>
-      <button onClick={addTask}>Add</button>
+      <button className="addButton" onClick={addTask}>Add</button>
       <TodoList tasks={taskList} setTaskList={setTaskList} />
     </div>
   );
@@ -34,14 +33,14 @@ function TodoList({ tasks, setTaskList }) {
     let remainingTasks = tasks.filter((task) => {
       return task.id !== id
       });
-    setTaskList(remainingTasks)
-    console.log(tasks)
+    setTaskList(remainingTasks);
   }
+
   return (
-    <ul>
+    <ul className="todoList">
       {tasks.map((task) =>
-        <li key={task.id}>
-          <button onClick={() => removeTask(task.id)}></button>
+        <li key={task.id} className="task">
+          <button className="checkbox" onClick={() => removeTask(task.id)}></button>
           <span>{task.name}</span>
         </li>
       )}
